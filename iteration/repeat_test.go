@@ -25,3 +25,25 @@ func ExampleRepeat() {
 	fmt.Println(repeated)
 	// Output: aaaaa
 }
+
+func TestCountRepeat(t *testing.T) {
+	t.Run("repeat a character five times and return the total amount of appearances for said character", func(t *testing.T) {
+		counted := CountRepeat("a", 5)
+		expected := 5
+		assertCorrectMessage(t, counted, expected)
+	})
+
+	t.Run("return the number 8 when count 0 value is provided", func(t *testing.T) {
+		counted := CountRepeat("b", 0)
+		expected := 8
+		assertCorrectMessage(t, counted, expected)
+	})
+
+}
+
+func assertCorrectMessage(t testing.TB, counted, expected int) {
+	t.Helper()
+	if counted != expected {
+		t.Errorf("Expected '%d' to be '%d'", counted, expected)
+	}
+}
