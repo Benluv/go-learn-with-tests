@@ -22,6 +22,7 @@ func TestSumAllTails(t *testing.T) {
 
 	checkSums := func(t testing.TB, got, want []int) {
 		t.Helper()
+		// DeepEqual reduces type safety in our code. Compiling even if you did something silly
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got %v want %v", got, want)
 		}
