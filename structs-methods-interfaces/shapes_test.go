@@ -10,3 +10,12 @@ func TestPermiter(t *testing.T) {
 		t.Errorf("got %.2f want %.2f", got, want)
 	}
 }
+
+func TestArea(t *testing.T) {
+	got := Area(62.0, 6.0)
+	want := 372.0
+
+	if got != want {
+		t.Errorf("got %.2f want %.2f", got, want)
+	}
+}
