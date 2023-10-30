@@ -3,7 +3,8 @@ package structsmethodsinterfaces
 import "testing"
 
 func TestPermiter(t *testing.T) {
-	got := Perimeter(10.0, 10.0)
+	rectangle := Rectangle{10.0, 10.0}
+	got := Perimeter(rectangle)
 	want := 40.0
 
 	if got != want {
@@ -12,7 +13,8 @@ func TestPermiter(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-	got := Area(62.0, 6.0)
+	rectangle := Rectangle{62.0, 6.0}
+	got := Area(rectangle)
 	want := 372.0
 
 	if got != want {
