@@ -1,6 +1,9 @@
 package pointerserrors
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Bitcoin int
 
@@ -19,8 +22,13 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 	w.balance += amount
 }
 
-func (w *Wallet) Withdraw(amount Bitcoin) {
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+
+	if amount > w.balance {
+		return errors.New("oh no")
+	}
 	w.balance -= amount
+	return nil
 }
 
 // no need to change Balance to use a pointer receiver. But it is convention for sake of consistency
