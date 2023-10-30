@@ -15,8 +15,12 @@ type Stringer interface {
 
 func (w *Wallet) Deposit(amount Bitcoin) {
 	// if pointer removed from wallet, then the memory location of the wallet changes
-	fmt.Printf("address of balance in Deposit is %p \n", &w.balance)
+	fmt.Printf("address of balance in Deposit is %p when not pointed at value\n", &w.balance)
 	w.balance += amount
+}
+
+func (w *Wallet) Withdraw(amount Bitcoin) {
+	w.balance -= amount
 }
 
 // no need to change Balance to use a pointer receiver. But it is convention for sake of consistency
