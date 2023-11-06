@@ -17,6 +17,7 @@ func CheckWebsites(wc WebsiteChecker, urls []string) map[string]bool {
 	}
 
 	for i := 0; i < len(urls); i++ {
+		// the ':=' is a blocking call, as you're waiting for value
 		r := <-resultChannel
 		results[r.string] = r.bool
 	}
