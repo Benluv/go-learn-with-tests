@@ -67,14 +67,6 @@ func TestWalk(t *testing.T) {
 			},
 			[]string{"London", "Reyjavík"},
 		},
-		{
-			"maps",
-			map[string]string{
-				"Cow":   "Moo",
-				"sheep": "Baa",
-			},
-			[]string{"Moo", "Baa"},
-		},
 	}
 
 	for _, test := range cases {
@@ -89,6 +81,21 @@ func TestWalk(t *testing.T) {
 			}
 		})
 	}
+
+	t.Run("with maps", func(t *testing.T) {
+		aMap := map[string]string{
+			"Cow":   "Moo",
+			"Sheep": "Baa",
+		}
+
+		var got []string
+		walk(aMap, func(input string) {
+			got = append(got, input)
+		})
+
+		assertContains(t, got, "Moo")
+		assertContains(t, got, "Baa")
+	})
 }
 
 type Person struct {
@@ -99,4 +106,17 @@ type Person struct {
 type Profile struct {
 	Age  int
 	City string
+}
+
+func assertContains(t testing.TB, haystack []string, needle string) {
+	t.Helper()
+	contains := false
+	for _, x := range haystack {
+		if x == needle {
+			contains = true
+		}
+	}
+	if !contains {
+		t.Errorf("Expected %v to contain %q but it didn't", haystack, needle)
+	}
 }
